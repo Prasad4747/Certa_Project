@@ -1,0 +1,115 @@
+{
+	"info": {
+		"_postman_id": "b189853f-b053-4aa9-9f24-01413b43d988",
+		"name": "Weather API Tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29530100",
+		"_collection_link": "https://www.postman.com/descent-module-physicist-64846605/workspace/creta-project/collection/29530100-b189853f-b053-4aa9-9f24-01413b43d988?action=share&source=collection_link&creator=29530100"
+	},
+	"item": [
+		{
+			"name": "Request 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Assertion 1: Verify latitude and longitude\r",
+							"pm.test(\"Latitude and Longitude Check\", function () {\r",
+							"    pm.response.to.have.jsonBody('coord.lat', 51.51);\r",
+							"    pm.response.to.have.jsonBody('coord.lon', -0.13);\r",
+							"});\r",
+							"// Assertion 2: Verify weather description\r",
+							"pm.test(\"Weather Description Check\", function () {\r",
+							"    pm.response.to.have.jsonBody('weather[0].description', \"light intensity drizzle\");\r",
+							"});\r",
+							"\r",
+							"// Assertion 3: Verify temperature range\r",
+							"pm.test(\"Temperature Range Check\", function () {\r",
+							"    pm.response.to.have.jsonBody('main.temp_min', 279.15);\r",
+							"    pm.response.to.have.jsonBody('main.temp_max', 281.15);\r",
+							"});\r",
+							"\r",
+							"// Assertion 4: Verify country code\r",
+							"pm.test(\"Country Code Check\", function () {\r",
+							"    pm.response.to.have.jsonBody('sys.country', \"GB\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://samples.openweathermap.org/data/2.5/weather?q=London,uk&appid=b6 907d289e10d714a6e88b30761fae22",
+					"protocol": "https",
+					"host": [
+						"samples",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "London,uk"
+						},
+						{
+							"key": "appid",
+							"value": "b6 907d289e10d714a6e88b30761fae22"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"// Assertion 1: Verify latitude and longitude",
+					"pm.test(\"Latitude and Longitude Check\", function () {",
+					"    pm.response.to.have.jsonBody('coord.lat', 51.51);",
+					"    pm.response.to.have.jsonBody('coord.lon', -0.13);",
+					"});",
+					"// Assertion 2: Verify weather description",
+					"pm.test(\"Weather Description Check\", function () {",
+					"    pm.response.to.have.jsonBody('weather[0].description', \"light intensity drizzle\");",
+					"});",
+					"",
+					"// Assertion 3: Verify temperature range",
+					"pm.test(\"Temperature Range Check\", function () {",
+					"    pm.response.to.have.jsonBody('main.temp_min', 279.15);",
+					"    pm.response.to.have.jsonBody('main.temp_max', 281.15);",
+					"});",
+					"",
+					"// Assertion 4: Verify country code",
+					"pm.test(\"Country Code Check\", function () {",
+					"    pm.response.to.have.jsonBody('sys.country', \"GB\");",
+					"});"
+				]
+			}
+		}
+	]
+}
